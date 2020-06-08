@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Calculator
+        </title>
+        <style>
+
+            #calc {
+                background-color: hsl(0, 0%, 89%);
+                border: 1px solid black;
+                border-radius: 3px;
+                width: 450px;
+                height: 400px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: 30px;
+                display: grid;
+                grid-template-rows: 1fr 6fr;
+            }
+
+            #display {
+                background-color: grey;
+                border-radius: 3px;
+                margin: 10px;
+                height: 50px;
+            }
+
+            #buttons {
+                display: inline-block;
+                display: grid;
+                grid-template-columns: 4fr 3fr;
+                /* text-align: center; */
+                /* margin-left: ; */
+                /* width: 90%; */
+                font-size: 20px;
+            }
+
+            #digits {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                justify-self: center;
+                align-self: center;
+            }
+
+            #operators {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                justify-self: center;
+                align-self: center;
+            }
+
+            button {
+                background-color: hsl(234, 79%, 68%);
+                /* margin: auto; */
+                width: 75px;
+                height: 75px;
+                border: 1px solid hsl(234, 79%, 68%);
+                margin: 2px;
+                font-size: 30px;
+                font-family:'Courier New', Courier, monospace;
+                border-radius: 3px;
+            }
+        </style>
+    </head>
+<body>
+
+<div id='calc'>
+    <div id='display'>
+        Yo
+    </div>
+    <div id='buttons'>
+        <div id='digits'>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>0</button>
+            <button>00</button>
+            <button>.</button>
+        </div>
+        <div id='operators'>
+            <button>*</button>
+            <button>/</button>
+            <button>+</button>
+            <button>-</button>
+            <button>=</button>
+            <button>C</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function add(a, b) {
+	return (a + b);
+}
+
+function subtract(a, b) {
+	return (a - b);
+}
+
+function multiply(a, b) {
+	return (a * b);
+}
+
+function divide(a, b) {
+    return (a / b);
+}
+
+function operate(a, b, sign) {
+    if (sign === "+") {
+        add(a, b)
+    } else if (sign === '-') {
+        subtract(a, b)
+    } else if (sign === '*') {
+        multiply(a, b)
+    } else if (sign === '/') {
+        divide(a, b)
+    }
+}
+// function power(a, b) {
+// 	return (a ** b);
+// }
+
+// function factorial(num) {
+// 	let fctrArray = []
+// 	for (let i = 1; i <= num; i++) {
+// 		fctrArray.push(i);
+// 	}
+// 	const fctrl = multiply(fctrArray);
+// 	return fctrl;
+// }
+
+</script>
+</body>
+</html>
