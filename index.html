@@ -7,10 +7,10 @@
         <style>
 
             #calc {
-                background-color: hsl(0, 0%, 89%);
+                background-color: hsl(138, 100%, 88%);
                 border: 1px solid black;
                 border-radius: 3px;
-                width: 450px;
+                width: 410px;
                 height: 400px;
                 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
                 font-size: 30px;
@@ -19,20 +19,19 @@
             }
 
             #display {
-                background-color: grey;
+                background-color: hsl(202, 80%, 72%);
+                display: inline-block;
                 border-radius: 3px;
-                margin: 10px;
+                margin: 8px;
                 height: 50px;
+                text-align: end;
+                
             }
 
             #buttons {
                 display: inline-block;
                 display: grid;
                 grid-template-columns: 4fr 3fr;
-                /* text-align: center; */
-                /* margin-left: ; */
-                /* width: 90%; */
-                font-size: 20px;
             }
 
             #digits {
@@ -51,14 +50,24 @@
 
             button {
                 background-color: hsl(234, 79%, 68%);
-                /* margin: auto; */
                 width: 75px;
                 height: 75px;
                 border: 1px solid hsl(234, 79%, 68%);
-                margin: 2px;
+                margin: 3px;
+                /* padding: 2px; */
                 font-size: 30px;
                 font-family:'Courier New', Courier, monospace;
                 border-radius: 3px;
+            }
+
+            .op {
+                height: 101px;
+            }
+
+            p {
+                position: relative;
+                top: -20px;
+                left: -8px;
             }
         </style>
     </head>
@@ -66,7 +75,7 @@
 
 <div id='calc'>
     <div id='display'>
-        Yo
+        <p>Yo</p>
     </div>
     <div id='buttons'>
         <div id='digits'>
@@ -84,12 +93,12 @@
             <button>.</button>
         </div>
         <div id='operators'>
-            <button>*</button>
-            <button>/</button>
-            <button>+</button>
-            <button>-</button>
-            <button>=</button>
-            <button>C</button>
+            <button class='op'>*</button>
+            <button class='op'>/</button>
+            <button class='op'>+</button>
+            <button class='op'>-</button>
+            <button class='op'>=</button>
+            <button class='op'>C</button>
         </div>
     </div>
 </div>
