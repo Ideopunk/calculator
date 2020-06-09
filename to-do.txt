@@ -1,2 +1,3 @@
 4. Spacing
 
+5. Clean up code (console.logs, alerts, extras in css)
