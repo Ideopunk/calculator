@@ -1,0 +1,11 @@
+- Decimals
+
+-BEDMAS :(
+
+- Round very long numbers so they don't overflow the calc. 
+
+- Fix the zeros...
+
+- Keyboard
+
+- Spacing

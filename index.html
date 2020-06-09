@@ -80,6 +80,10 @@
                 font-family: 'pockcalc', 'Times New Roman', Times, serif
             }
 
+            #backspace {
+                font-size: 50px;
+                color:hsl(0, 0%, 22%)
+            }
         </style>
     </head>
 <body>
@@ -100,8 +104,8 @@
             <button class='dig btn'>2</button>
             <button class='dig btn'>3</button>
             <button class='dig btn'>0</button>
-            <button class='dig btn'>00</button>
-            <button class='dig btn'>.</button>
+            <button id='decimal' class='dig'>.</button>
+            <button id='backspace'>⌫</button>
         </div>
         <div id='operators'>
             <button class='op btn'>*</button>
@@ -119,7 +123,28 @@ let temp = 0;
 
 function display(value) {
     let currVal = document.querySelector('#displaytext').textContent;
-    document.querySelector('#displaytext').textContent = '' + currVal + value;
+    newExpression = '' + currVal + value;
+    if (newExpression.match(/[+\-/*][+\-/*]/) ) {
+        alert("Operators can only operate on numbers")
+    } else {
+        document.querySelector('#displaytext').textContent = '' + currVal + value;
+    }
+}
+
+function decimalize() {
+    let currVal = document.querySelector('#displaytext').textContent;
+    let lastNum = currVal.match(/[\d.]+$/)
+    if (lastNum[0].includes('.')) {
+        alert("There's already a decimal here :)")
+        return
+    } else {
+        display('.')
+    }
+}
+
+function backspace() {
+    let currVal = document.querySelector('#displaytext').textContent;
+    document.querySelector('#displaytext').textContent = currVal.slice(0, -1);
 }
 
 function clear() {
@@ -136,24 +161,22 @@ function divide(a, b) { return (a / b);}
 
 function operate() {
     let currEquation = document.querySelector('#displaytext').textContent;
-    if (currEquation.match(/[+\-/*][+\-/*]/) ) {
-        alert("Operators can only operate on numbers")
-    }
+
     // work through all the operators until only a number remains
     while (currEquation.match(/[-+*/]/)) {
-        let firstExpress = currEquation.match(/\d+[+\-*/]\d+/);
+        let firstExpress = currEquation.match(/[\d.]+[+\-*/][\d.]+/);
         firstExpress = firstExpress[0];
 
-        let theRest = currEquation.match(/(?<=\d+[+\-*/]\d+).*/);
+        let theRest = currEquation.match(/(?<=[\d.]+[+\-*/][\d.]+).*/);
         theRest = theRest[0];
         
-        let a = firstExpress.match(/\d+/);
+        let a = firstExpress.match(/[\d.]+/);
         a = Number(a[0]);
 
         let sign = firstExpress.match(/[+\-/*]/);
         sign = sign[0];
 
-        let b = firstExpress.match(/\d+$/)
+        let b = firstExpress.match(/[\d.]+$/)
         b = Number(b[0]);
 
         // alert("a + sign + b = " + a + sign + b + '. The rest = ' + theRest)
@@ -169,7 +192,12 @@ function operate() {
         }
         currEquation = '' + firstExpress + theRest;
     }
-    document.querySelector('#displaytext').textContent = currEquation;
+    if (currEquation === 'Infinity') {
+        alert('No')
+        clear();
+    } else {
+        document.querySelector('#displaytext').textContent = currEquation;
+    }
 }
 
 // initialize buttons
@@ -188,6 +216,16 @@ equalSign.addEventListener('click', () => {
 let CC = document.querySelector('#clear')
 CC.addEventListener('click', () => {
     clear();
+});
+
+let deci = document.querySelector('#decimal')
+deci.addEventListener('click', () => {
+    decimalize();
+});
+
+let bs = document.querySelector('#backspace')
+bs.addEventListener('click', () => {
+    backspace();
 });
 
 </script>
