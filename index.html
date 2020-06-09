@@ -18,15 +18,12 @@
                 border-radius: 3px;
                 width: 410px;
                 height: 420px;
-                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-                font-size: 30px;
                 display: grid;
                 grid-template-rows: 1fr 6fr;
             }
 
             #display {
                 background-color: hsl(202, 80%, 72%);
-                display: inline-block;
                 border-radius: 3px;
                 margin: 15px;
                 height: 50px;
@@ -35,7 +32,6 @@
             }
 
             #buttons {
-                display: inline-block;
                 display: grid;
                 grid-template-columns: 4fr 3fr;
                 position: relative;
@@ -45,7 +41,6 @@
             #digits {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                justify-self: center;
                 align-self: center;
             }
 
@@ -58,14 +53,6 @@
             #notequal {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                justify-self: center;
-                align-self: center;
-            }
-
-            #yesequal {
-                display: grid;
-                justify-self: center;
-                align-self: center;
             }
 
             button {
@@ -75,7 +62,7 @@
                 border: 1px solid hsl(234, 79%, 68%);
                 margin: 3px;
                 font-size: 30px;
-                font-family:'Courier New', Courier, monospace;
+                font-family: Courier, monospace;
                 border-radius: 3px;
                 box-shadow: 0.5px 1px 1px 1px hsl(234, 30%, 41%);
             }
@@ -101,7 +88,7 @@
 
             #backspace {
                 font-size: 50px;
-                color:hsl(0, 0%, 22%)
+                color:hsl(240, 5%, 12%)
             }
 
             #equals {
