@@ -1,6 +1,4 @@
 
-2. keyboard Enter might be combining with button enter? Maybe enter shouldn't be used for equals.
-
 3. Rounding button.
 
 4. Spacing

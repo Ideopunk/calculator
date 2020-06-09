@@ -47,8 +47,19 @@
             }
 
             #operators {
+                display: inline-block;
+                /* grid-template-rows: 400px 100px; */
+            }
+
+            #notequal {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
+                justify-self: center;
+                align-self: center;
+            }
+
+            #yesequal {
+                display: grid;
                 justify-self: center;
                 align-self: center;
             }
@@ -59,16 +70,18 @@
                 height: 75px;
                 border: 1px solid hsl(234, 79%, 68%);
                 margin: 3px;
-                /* padding: 2px; */
                 font-size: 30px;
                 font-family:'Courier New', Courier, monospace;
                 border-radius: 3px;
             }
 
             .op {
-                height: 115px;
+                height: 98px;
             }
 
+            .letters {
+                height: 40px;
+            }
             p {
                 position: relative;
                 top: -50px;
@@ -84,6 +97,11 @@
                 font-size: 50px;
                 color:hsl(0, 0%, 22%)
             }
+
+            #equals {
+                width: 95%;
+            }
+
         </style>
     </head>
 <body>
@@ -108,13 +126,17 @@
             <button value='Backspace' data-key='8' id='backspace'>⌫</button>
         </div>
         <div id='operators'>
-            <button value='*' data-key='106' class='op btn'>*</button>
-            <button value='/' data-key='111' class='op btn'>/</button>
-            <button value='+' data-key='107' class='op btn'>+</button>
-            <button value='-' data-key='109' class='op btn'>-</button>
-            <!-- <button value='r' data-key='109' class='op btn'>R</button> -->
-            <button value='Enter' data-key='187' id='equals'>=</button>
-            <button value='c' data-key='67' id='clear'>C</button>
+                <div id='notequal'>
+                <button value='*' data-key='106' class='op btn'>*</button>
+                <button value='/' data-key='111' class='op btn'>/</button>
+                <button value='+' data-key='107' class='op btn'>+</button>
+                <button value='-' data-key='109' class='op btn'>-</button>
+                <button value='r' data-key='82' class='letters' id='round'>R</button>
+                <button value='c' data-key='67' class='letters' id='clear'>C</button>
+            </div>
+            <div id='yesequal'>
+                <button value='=' data-key='187' id='equals'>=</button>
+            </div>
         </div>
     </div>
 </div>
@@ -162,11 +184,13 @@ function subtract(a, b) { return (a - b); }
 function multiply(a, b) { return (a * b); }
 
 function rounder(a) {
+    console.log("a: " + a)
     let trailingDig = a.match(/\d+$/);
-    len = trailingDig[0].length;
+    console.log("trailingDig: " + trailingDig)
+    let len = trailingDig[0].length;
     console.log(len);
     a = Number(a).toFixed(len - 1);
-    console.log(a)
+    console.log("a: " + a)
     a = a.toString()
     return a;
 }
@@ -256,6 +280,13 @@ let CC = document.querySelector('#clear')
 CC.addEventListener('click', () => {
     clear();
 });
+
+let roundBtn = document.querySelector('#round');
+roundBtn.addEventListener('click', () => {
+    let currDisplay = document.querySelector('#displaytext').textContent;
+    let roundedNum = rounder(currDisplay);
+    document.querySelector('#displaytext').textContent = roundedNum;
+})
 
 let deci = document.querySelector('#decimal')
 deci.addEventListener('click', () => {
