@@ -87,6 +87,7 @@
             .letters {
                 height: 40px;
             }
+
             p {
                 position: relative;
                 top: -50px;
@@ -95,7 +96,7 @@
             }
 
             .font {
-                font-family: 'pockcalc', 'Times New Roman', Times, serif
+                font-family: 'pockcalc', 'Courier New', Courier, monospace;
             }
 
             #backspace {
@@ -192,7 +193,15 @@ function add(a, b) { return (a + b); }
 
 function subtract(a, b) { return (a - b); }
 
-function multiply(a, b) { return (a * b); }
+function multiply(a, b) { 
+    let x = a / b;
+    x = x.toString()
+    if (x.includes('.')) {
+        while (x.length > 14) {
+            x = rounder(x);
+        }
+    }
+    return (a * b); }
 
 function rounder(a) {
     let trailingDig = a.match(/\d\.\d+$/);
@@ -204,6 +213,7 @@ function rounder(a) {
     // Swap out number for rounded number.
     let newEnd = Number(trailingDig[0]).toFixed(len - 3);
     a = a.replace(/\d\.\d+$/, newEnd)
+    a = a.replace(/0+$/, '')
     return a;
 }
 
@@ -216,6 +226,7 @@ function divide(a, b) {
     return (parseFloat(x));
 }
 
+// choose operator
 function operate(a, b, sign) {
     if (sign === "+") {
         result = add(a, b);
@@ -229,6 +240,7 @@ function operate(a, b, sign) {
     return result;
 }
 
+// prepare display string for operation
 function regexMathCut(string, regexMath) {
     while(string.match(regexMath)) {
         let match = string.match(regexMath)
@@ -263,7 +275,10 @@ function equals() {
     if (currEquation === 'Infinity') {
         alert('No')
         clear();
+    } else if (currEquation.toString().length > 15) {
+        alert('That number is ridiculous! Calm down!')
     } else {
+        currEquation = currEquation.replace(/0+$/, '')
         document.querySelector('#displaytext').textContent = currEquation;
     }
 }
@@ -303,6 +318,7 @@ bs.addEventListener('click', () => {
     backspace();
 });
 
+// initialize keyboard functionality
 window.addEventListener('keydown', function(e) {
     const buttonInput = document.querySelector(`button[value="${e.key}"]`)
     if(!buttonInput) return;
