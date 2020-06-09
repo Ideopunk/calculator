@@ -1,11 +1,15 @@
 - Decimals
 
+- Uhh large numbers don't work
+
 -BEDMAS :(
 
 - Round very long numbers so they don't overflow the calc. 
+if length is above 16
 
 - Fix the zeros...
 
 - Keyboard
+- I think we're good?
 
 - Spacing

@@ -66,7 +66,7 @@
             }
 
             .op {
-                height: 101px;
+                height: 115px;
             }
 
             p {
@@ -94,26 +94,26 @@
     </div>
     <div id='buttons'>
         <div id='digits'>
-            <button class='dig btn'>7</button>
-            <button class='dig btn'>8</button>
-            <button class='dig btn'>9</button>
-            <button class='dig btn'>4</button>
-            <button class='dig btn'>5</button>
-            <button class='dig btn'>6</button>
-            <button class='dig btn'>1</button>
-            <button class='dig btn'>2</button>
-            <button class='dig btn'>3</button>
-            <button class='dig btn'>0</button>
-            <button id='decimal' class='dig'>.</button>
-            <button id='backspace'>⌫</button>
+            <button value='7' data-key='55' class='dig btn'>7</button>
+            <button value='8' data-key='56' class='dig btn'>8</button>
+            <button value='9' data-key='57' class='dig btn'>9</button>
+            <button value='4' data-key='52' class='dig btn'>4</button>
+            <button value='5' data-key='53' class='dig btn'>5</button>
+            <button value='6' data-key='54' class='dig btn'>6</button>
+            <button value='1' data-key='49' class='dig btn'>1</button>
+            <button value='2' data-key='50' class='dig btn'>2</button>
+            <button value='3' data-key='51' class='dig btn'>3</button>
+            <button value='0' data-key='48' class='dig btn'><kbd>0</kbd></button>
+            <button value='.' data-key='190' id='decimal' class='dig'>.</button>
+            <button value='Backspace' data-key='8' id='backspace'>⌫</button>
         </div>
         <div id='operators'>
-            <button class='op btn'>*</button>
-            <button class='op btn'>/</button>
-            <button class='op btn'>+</button>
-            <button class='op btn'>-</button>
-            <button id='equals'>=</button>
-            <button id='clear'>C</button>
+            <button value='*' data-key='106' class='op btn'>*</button>
+            <button value='/' data-key='111' class='op btn'>/</button>
+            <button value='+' data-key='107' class='op btn'>+</button>
+            <button value='-' data-key='109' class='op btn'>-</button>
+            <button value='Enter' data-key='187' id='equals'>=</button>
+            <button value='c' data-key='67' id='clear'>C</button>
         </div>
     </div>
 </div>
@@ -134,7 +134,9 @@ function display(value) {
 function decimalize() {
     let currVal = document.querySelector('#displaytext').textContent;
     let lastNum = currVal.match(/[\d.]+$/)
-    if (lastNum[0].includes('.')) {
+    if (lastNum === null) {
+        display('.')
+    } else if (lastNum[0].includes('.')) {
         alert("There's already a decimal here :)")
         return
     } else {
@@ -227,6 +229,17 @@ let bs = document.querySelector('#backspace')
 bs.addEventListener('click', () => {
     backspace();
 });
+
+window.addEventListener('keydown', function(e) {
+    const buttonInput = document.querySelector(`button[value="${e.key}"]`)
+    if(!buttonInput) return;
+    console.log(buttonInput) // get rid of this later
+    buttonInput.click()
+});
+
+window.addEventListener('keydown', function(e) {
+    console.log(e)
+})
 
 </script>
 </body>
