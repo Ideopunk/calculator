@@ -112,6 +112,7 @@
             <button value='/' data-key='111' class='op btn'>/</button>
             <button value='+' data-key='107' class='op btn'>+</button>
             <button value='-' data-key='109' class='op btn'>-</button>
+            <!-- <button value='r' data-key='109' class='op btn'>R</button> -->
             <button value='Enter' data-key='187' id='equals'>=</button>
             <button value='c' data-key='67' id='clear'>C</button>
         </div>
@@ -119,16 +120,17 @@
 </div>
 
 <script>
-let temp = 0;
-
 function display(value) {
     let currVal = document.querySelector('#displaytext').textContent;
-    newExpression = '' + currVal + value;
-    if (newExpression.match(/[+\-/*][+\-/*]/) ) {
-        alert("Operators can only operate on numbers")
-    } else {
-        document.querySelector('#displaytext').textContent = '' + currVal + value;
+    let newExpression = '' + currVal + value;
+    if (newExpression.match(/[+\-/*][+/*]/) ) {
+        alert("Operators can only operate on numbers");
+        return;
+    } else if (newExpression.length > 16) {
+        alert("Sorry, this calculator only has so much space.")
+        return;
     }
+    document.querySelector('#displaytext').textContent = newExpression;
 }
 
 function decimalize() {
@@ -159,41 +161,73 @@ function subtract(a, b) { return (a - b); }
 
 function multiply(a, b) { return (a * b); }
 
-function divide(a, b) { return (a / b);}
+function rounder(a) {
+    let trailingDig = a.match(/\d+$/);
+    len = trailingDig[0].length;
+    console.log(len);
+    a = Number(a).toFixed(len - 1);
+    console.log(a)
+    a = a.toString()
+    return a;
+}
 
-function operate() {
+function divide(a, b) { 
+    let x = a / b;
+    alert(x)
+    console.log("original x: " + x)
+    x = x.toString()
+    console.log("stringified x: " + x + x.length)
+    console.log("x.length: " + x.length)
+    while (x.length > 14) {
+        x = rounder(x);
+    }
+    return (parseFloat(x));
+}
+
+function operate(a, b, sign) {
+    if (sign === "+") {
+        result = add(a, b);
+    } else if (sign === '-') {
+        result = subtract(a, b);
+    } else if (sign === '*') {
+        result = multiply(a, b);
+    } else if (sign === '/') {
+        result = divide(a, b);
+    }
+    return result;
+}
+
+function regexMathCut(string, regexMath) {
+    while(string.match(regexMath)) {
+        let match = string.match(regexMath)
+        let a = Number(match[1])
+        let sign = match[2]
+        let b = Number(match[3])
+        result = operate(a, b, sign)
+        string = string.replace(regexMath, result)
+    }
+    return string
+}
+
+function equals() {
     let currEquation = document.querySelector('#displaytext').textContent;
 
-    // work through all the operators until only a number remains
-    while (currEquation.match(/[-+*/]/)) {
-        let firstExpress = currEquation.match(/[\d.]+[+\-*/][\d.]+/);
-        firstExpress = firstExpress[0];
+    // get rid of erronous operators at beginning and end of string
+    currEquation = currEquation.replace(/^[+/*]/, '')
+    currEquation = currEquation.replace(/[-+/*]$/, '')
 
-        let theRest = currEquation.match(/(?<=[\d.]+[+\-*/][\d.]+).*/);
-        theRest = theRest[0];
-        
-        let a = firstExpress.match(/[\d.]+/);
-        a = Number(a[0]);
+    // If there is an operator in the equation, work through all the operators until only a number remains.
+    while (currEquation.match(/\d[+*/]\d/)) {
 
-        let sign = firstExpress.match(/[+\-/*]/);
-        sign = sign[0];
+        // beDMas 
+        let dmExpress = /([-\d.]+)([*/])([-\d.]+)/
+        currEquation = regexMathCut(currEquation, dmExpress)
 
-        let b = firstExpress.match(/[\d.]+$/)
-        b = Number(b[0]);
-
-        // alert("a + sign + b = " + a + sign + b + '. The rest = ' + theRest)
-
-        if (sign === "+") {
-            firstExpress = add(a, b);
-        } else if (sign === '-') {
-            firstExpress = subtract(a, b);
-        } else if (sign === '*') {
-            firstExpress = multiply(a, b);
-        } else if (sign === '/') {
-            firstExpress = divide(a, b);
-        }
-        currEquation = '' + firstExpress + theRest;
+        // bedmAS
+        let asExpress = /([\d.]+)([-+])([\d.]+)/
+        currEquation = regexMathCut(currEquation, asExpress)
     }
+
     if (currEquation === 'Infinity') {
         alert('No')
         clear();
@@ -212,7 +246,7 @@ buttons.forEach((button) => {
 
 let equalSign = document.querySelector('#equals')
 equalSign.addEventListener('click', () => {
-    operate();
+    equals();
 })
 
 let CC = document.querySelector('#clear')

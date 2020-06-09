@@ -1,15 +1,9 @@
-- Decimals
+1. Decimals
 
-- Uhh large numbers don't work
+2. keyboard Enter might be combining with button enter? Maybe enter shouldn't be used for equals.
 
--BEDMAS :(
+3. Rounding button.
 
-- Round very long numbers so they don't overflow the calc. 
-if length is above 16
+4. Spacing
 
-- Fix the zeros...
-
-- Keyboard
-- I think we're good?
-
-- Spacing
+5. negatives?
