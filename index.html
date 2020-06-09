@@ -200,7 +200,6 @@ function rounder(a) {
     // Swap out number for rounded number.
     let newEnd = Number(trailingDig[0]).toFixed(len - 3);
     a = a.replace(/\d\.\d+$/, newEnd)
-    a = a.replace(/0+$/, '')
     return a;
 }
 
@@ -265,7 +264,6 @@ function equals() {
     } else if (currEquation.toString().length > 15) {
         alert('That number is ridiculous! Calm down!')
     } else {
-        currEquation = currEquation.replace(/0+$/, '')
         document.querySelector('#displaytext').textContent = currEquation;
     }
 }
