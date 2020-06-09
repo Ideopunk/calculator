@@ -71,14 +71,13 @@
 
             p {
                 position: relative;
-                top: -20px;
+                top: -50px;
                 left: -8px;
-                /* font-family: Pocket-Calculator; */
+                font-size: 50px;
             }
 
             .font {
                 font-family: 'pockcalc', 'Times New Roman', Times, serif
-                /* font-family:'Courier New', Courier, monospace; */
             }
 
         </style>
@@ -91,26 +90,26 @@
     </div>
     <div id='buttons'>
         <div id='digits'>
-            <button class='dig'>7</button>
-            <button class='dig'>8</button>
-            <button class='dig'>9</button>
-            <button class='dig'>4</button>
-            <button class='dig'>5</button>
-            <button class='dig'>6</button>
-            <button class='dig'>1</button>
-            <button class='dig'>2</button>
-            <button class='dig'>3</button>
-            <button class='dig'>0</button>
-            <button class='dig'>00</button>
-            <button class='dig'>.</button>
+            <button class='dig btn'>7</button>
+            <button class='dig btn'>8</button>
+            <button class='dig btn'>9</button>
+            <button class='dig btn'>4</button>
+            <button class='dig btn'>5</button>
+            <button class='dig btn'>6</button>
+            <button class='dig btn'>1</button>
+            <button class='dig btn'>2</button>
+            <button class='dig btn'>3</button>
+            <button class='dig btn'>0</button>
+            <button class='dig btn'>00</button>
+            <button class='dig btn'>.</button>
         </div>
         <div id='operators'>
-            <button class='op'>*</button>
-            <button class='op'>/</button>
-            <button class='op'>+</button>
-            <button class='op'>-</button>
-            <button class='op'>=</button>
-            <button class='op'>C</button>
+            <button class='op btn'>*</button>
+            <button class='op btn'>/</button>
+            <button class='op btn'>+</button>
+            <button class='op btn'>-</button>
+            <button id='equals'>=</button>
+            <button id='clear'>C</button>
         </div>
     </div>
 </div>
@@ -120,20 +119,12 @@ let temp = 0;
 
 function display(value) {
     let currVal = document.querySelector('#displaytext').textContent;
-    if ((value > -1 && value < 10) || value === '.') {
-        document.querySelector('#displaytext').textContent = '' + currVal + value;
-        temp = document.querySelector('#displaytext').textContent;
-    } else if (value === 'C') {
-        document.querySelector('#displaytext').textContent = '';
-        temp = 0;
-    } else if (value === '=') {
-        operate(temp, value)
-    } else {
-        operate(value)
-    }
+    document.querySelector('#displaytext').textContent = '' + currVal + value;
 }
 
-// function getSecondNum
+function clear() {
+    document.querySelector('#displaytext').textContent = '';
+}
 
 function add(a, b) { return (a + b); }
 
@@ -143,26 +134,61 @@ function multiply(a, b) { return (a * b); }
 
 function divide(a, b) { return (a / b);}
 
-function operate(a, b, sign) {
-    if (sign === "+") {
-        add(a, b)
-    } else if (sign === '-') {
-        subtract(a, b)
-    } else if (sign === '*') {
-        multiply(a, b)
-    } else if (sign === '/') {
-        divide(a, b)
+function operate() {
+    let currEquation = document.querySelector('#displaytext').textContent;
+    if (currEquation.match(/[+\-/*][+\-/*]/) ) {
+        alert("Operators can only operate on numbers")
     }
+    // work through all the operators until only a number remains
+    while (currEquation.match(/[-+*/]/)) {
+        let firstExpress = currEquation.match(/\d+[+\-*/]\d+/);
+        firstExpress = firstExpress[0];
+
+        let theRest = currEquation.match(/(?<=\d+[+\-*/]\d+).*/);
+        theRest = theRest[0];
+        
+        let a = firstExpress.match(/\d+/);
+        a = Number(a[0]);
+
+        let sign = firstExpress.match(/[+\-/*]/);
+        sign = sign[0];
+
+        let b = firstExpress.match(/\d+$/)
+        b = Number(b[0]);
+
+        // alert("a + sign + b = " + a + sign + b + '. The rest = ' + theRest)
+
+        if (sign === "+") {
+            firstExpress = add(a, b);
+        } else if (sign === '-') {
+            firstExpress = subtract(a, b);
+        } else if (sign === '*') {
+            firstExpress = multiply(a, b);
+        } else if (sign === '/') {
+            firstExpress = divide(a, b);
+        }
+        currEquation = '' + firstExpress + theRest;
+    }
+    document.querySelector('#displaytext').textContent = currEquation;
 }
 
 // initialize buttons
-let buttons = document.querySelectorAll('.dig');
+let buttons = document.querySelectorAll('.btn');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         display(button.textContent);
     });
 });
 
+let equalSign = document.querySelector('#equals')
+equalSign.addEventListener('click', () => {
+    operate();
+})
+
+let CC = document.querySelector('#clear')
+CC.addEventListener('click', () => {
+    clear();
+});
 
 </script>
 </body>
