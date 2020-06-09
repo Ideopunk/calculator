@@ -69,28 +69,33 @@
                 top: -20px;
                 left: -8px;
             }
+
+            .font {
+                font-family:'Courier New', Courier, monospace;
+            }
+
         </style>
     </head>
 <body>
 
 <div id='calc'>
     <div id='display'>
-        <p>Yo</p>
+        <p id='displaytext' class='font'></p>
     </div>
     <div id='buttons'>
         <div id='digits'>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>0</button>
-            <button>00</button>
-            <button>.</button>
+            <button class='dig'>7</button>
+            <button class='dig'>8</button>
+            <button class='dig'>9</button>
+            <button class='dig'>4</button>
+            <button class='dig'>5</button>
+            <button class='dig'>6</button>
+            <button class='dig'>1</button>
+            <button class='dig'>2</button>
+            <button class='dig'>3</button>
+            <button class='dig'>0</button>
+            <button class='dig'>00</button>
+            <button class='dig'>.</button>
         </div>
         <div id='operators'>
             <button class='op'>*</button>
@@ -104,21 +109,32 @@
 </div>
 
 <script>
-function add(a, b) {
-	return (a + b);
+let temp = 0;
+
+function display(value) {
+    let currVal = document.querySelector('#displaytext').textContent;
+    if ((value > -1 && value < 10) || value === '.') {
+        document.querySelector('#displaytext').textContent = '' + currVal + value;
+        temp = document.querySelector('#displaytext').textContent;
+    } else if (value === 'C') {
+        document.querySelector('#displaytext').textContent = '';
+        temp = 0;
+    } else if (value === '=') {
+        operate(temp, value)
+    } else {
+        operate(value)
+    }
 }
 
-function subtract(a, b) {
-	return (a - b);
-}
+// function getSecondNum
 
-function multiply(a, b) {
-	return (a * b);
-}
+function add(a, b) { return (a + b); }
 
-function divide(a, b) {
-    return (a / b);
-}
+function subtract(a, b) { return (a - b); }
+
+function multiply(a, b) { return (a * b); }
+
+function divide(a, b) { return (a / b);}
 
 function operate(a, b, sign) {
     if (sign === "+") {
@@ -131,18 +147,15 @@ function operate(a, b, sign) {
         divide(a, b)
     }
 }
-// function power(a, b) {
-// 	return (a ** b);
-// }
 
-// function factorial(num) {
-// 	let fctrArray = []
-// 	for (let i = 1; i <= num; i++) {
-// 		fctrArray.push(i);
-// 	}
-// 	const fctrl = multiply(fctrArray);
-// 	return fctrl;
-// }
+// initialize buttons
+let buttons = document.querySelectorAll('.dig');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        display(button.textContent);
+    });
+});
+
 
 </script>
 </body>
