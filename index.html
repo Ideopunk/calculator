@@ -162,7 +162,7 @@ function decimalize() {
         display('.')
     } else if (lastNum[0].includes('.')) {
         alert("There's already a decimal here :)")
-        return
+        return;
     } else {
         display('.')
     }
@@ -185,13 +185,17 @@ function multiply(a, b) { return (a * b); }
 
 function rounder(a) {
     console.log("a: " + a)
-    let trailingDig = a.match(/\d+$/);
+    let trailingDig = a.match(/\d\.\d+$/);
     console.log("trailingDig: " + trailingDig)
+    if (trailingDig === null) {
+        return a;
+    }
     let len = trailingDig[0].length;
     console.log(len);
-    a = Number(a).toFixed(len - 1);
-    console.log("a: " + a)
-    a = a.toString()
+    let newEnd = Number(trailingDig[0]).toFixed(len - 3);
+    // console.log("a: " + a)
+    console.log(newEnd)
+    a = a.replace(/\d\.\d+$/, newEnd)
     return a;
 }
 
@@ -284,8 +288,7 @@ CC.addEventListener('click', () => {
 let roundBtn = document.querySelector('#round');
 roundBtn.addEventListener('click', () => {
     let currDisplay = document.querySelector('#displaytext').textContent;
-    let roundedNum = rounder(currDisplay);
-    document.querySelector('#displaytext').textContent = roundedNum;
+    document.querySelector('#displaytext').textContent = rounder(currDisplay);
 })
 
 let deci = document.querySelector('#decimal')

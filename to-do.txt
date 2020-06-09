@@ -1,5 +1,2 @@
-
-3. Rounding button.
-
 4. Spacing
 
