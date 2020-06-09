@@ -173,10 +173,9 @@ function rounder(a) {
 
 function divide(a, b) { 
     let x = a / b;
-    alert(x)
     console.log("original x: " + x)
     x = x.toString()
-    console.log("stringified x: " + x + x.length)
+    console.log("stringified x: " + x + ' ' + x.length)
     console.log("x.length: " + x.length)
     while (x.length > 14) {
         x = rounder(x);
@@ -200,7 +199,9 @@ function operate(a, b, sign) {
 function regexMathCut(string, regexMath) {
     while(string.match(regexMath)) {
         let match = string.match(regexMath)
+        console.log('match: ' + match)
         let a = Number(match[1])
+        console.log('first number: ' + a)
         let sign = match[2]
         let b = Number(match[3])
         result = operate(a, b, sign)
@@ -210,6 +211,7 @@ function regexMathCut(string, regexMath) {
 }
 
 function equals() {
+    console.log('equals')
     let currEquation = document.querySelector('#displaytext').textContent;
 
     // get rid of erronous operators at beginning and end of string
@@ -217,14 +219,15 @@ function equals() {
     currEquation = currEquation.replace(/[-+/*]$/, '')
 
     // If there is an operator in the equation, work through all the operators until only a number remains.
-    while (currEquation.match(/\d[+*/]\d/)) {
+    while (currEquation.match(/\d[+*/-]+\d/)) {
+        console.log('while')
 
         // beDMas 
         let dmExpress = /([-\d.]+)([*/])([-\d.]+)/
         currEquation = regexMathCut(currEquation, dmExpress)
 
         // bedmAS
-        let asExpress = /([\d.]+)([-+])([\d.]+)/
+        let asExpress = /([-\d.]+)([-+])([-\d.]+)/
         currEquation = regexMathCut(currEquation, asExpress)
     }
 
