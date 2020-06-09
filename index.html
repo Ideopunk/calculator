@@ -53,7 +53,6 @@
                 display: inline-block;
                 justify-self: center;
                 align-self: center;
-                /* grid-template-rows: 400px 100px; */
             }
 
             #notequal {
@@ -79,7 +78,6 @@
                 font-family:'Courier New', Courier, monospace;
                 border-radius: 3px;
                 box-shadow: 0.5px 1px 1px 1px hsl(234, 30%, 41%);
-                line-height: -100px;
             }
 
             .op {
@@ -154,6 +152,8 @@
 </div>
 
 <script>
+
+// update display with digit or operator
 function display(value) {
     let currVal = document.querySelector('#displaytext').textContent;
     let newExpression = '' + currVal + value;
@@ -167,6 +167,7 @@ function display(value) {
     document.querySelector('#displaytext').textContent = newExpression;
 }
 
+// update display with decimal
 function decimalize() {
     let currVal = document.querySelector('#displaytext').textContent;
     let lastNum = currVal.match(/[\d.]+$/)
@@ -185,9 +186,7 @@ function backspace() {
     document.querySelector('#displaytext').textContent = currVal.slice(0, -1);
 }
 
-function clear() {
-    document.querySelector('#displaytext').textContent = '';
-}
+function clear() { document.querySelector('#displaytext').textContent = ''; }
 
 function add(a, b) { return (a + b); }
 
@@ -196,27 +195,21 @@ function subtract(a, b) { return (a - b); }
 function multiply(a, b) { return (a * b); }
 
 function rounder(a) {
-    console.log("a: " + a)
     let trailingDig = a.match(/\d\.\d+$/);
-    console.log("trailingDig: " + trailingDig)
     if (trailingDig === null) {
         return a;
     }
     let len = trailingDig[0].length;
-    console.log(len);
+
+    // Swap out number for rounded number.
     let newEnd = Number(trailingDig[0]).toFixed(len - 3);
-    // console.log("a: " + a)
-    console.log(newEnd)
     a = a.replace(/\d\.\d+$/, newEnd)
     return a;
 }
 
 function divide(a, b) { 
     let x = a / b;
-    console.log("original x: " + x)
     x = x.toString()
-    console.log("stringified x: " + x + ' ' + x.length)
-    console.log("x.length: " + x.length)
     while (x.length > 14) {
         x = rounder(x);
     }
@@ -239,19 +232,16 @@ function operate(a, b, sign) {
 function regexMathCut(string, regexMath) {
     while(string.match(regexMath)) {
         let match = string.match(regexMath)
-        console.log('match: ' + match)
         let a = Number(match[1])
-        console.log('first number: ' + a)
         let sign = match[2]
         let b = Number(match[3])
         result = operate(a, b, sign)
         string = string.replace(regexMath, result)
     }
-    return string
+    return string;
 }
 
 function equals() {
-    console.log('equals')
     let currEquation = document.querySelector('#displaytext').textContent;
 
     // get rid of erronous operators at beginning and end of string
@@ -260,7 +250,6 @@ function equals() {
 
     // If there is an operator in the equation, work through all the operators until only a number remains.
     while (currEquation.match(/\d[+*/-]+\d/)) {
-        console.log('while')
 
         // beDMas 
         let dmExpress = /([-\d.]+)([*/])([-\d.]+)/
@@ -279,7 +268,7 @@ function equals() {
     }
 }
 
-// initialize buttons
+// initialize digit and operator buttons
 let buttons = document.querySelectorAll('.btn');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -292,6 +281,7 @@ equalSign.addEventListener('click', () => {
     equals();
 })
 
+// initialize non-operator function buttons
 let CC = document.querySelector('#clear')
 CC.addEventListener('click', () => {
     clear();
@@ -316,13 +306,8 @@ bs.addEventListener('click', () => {
 window.addEventListener('keydown', function(e) {
     const buttonInput = document.querySelector(`button[value="${e.key}"]`)
     if(!buttonInput) return;
-    console.log(buttonInput) // get rid of this later
     buttonInput.click()
 });
-
-window.addEventListener('keydown', function(e) {
-    console.log(e)
-})
 
 </script>
 </body>
