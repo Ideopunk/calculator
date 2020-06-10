@@ -269,7 +269,9 @@ function equals() {
         alert('No')
         clear();
     } else if (currEquation.toString().length > 15) {
-        currEquation = rounder(currEquation);
+        while (currEquation.toString().length > 15) {
+            currEquation = rounder(currEquation);
+        }
         if (currEquation.includes('.')) {
             currEquation = currEquation.replace(/0+$/, '')
         }
