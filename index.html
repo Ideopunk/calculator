@@ -178,7 +178,9 @@ function clear() { document.querySelector('#displaytext').textContent = ''; }
 
 function add(a, b) { return (a + b); }
 
-function subtract(a, b) { return (a - b); }
+function subtract(a, b) { 
+    return (a - b); 
+}
 
 function multiply(a, b) { 
     let x = a / b;
@@ -230,8 +232,14 @@ function operate(a, b, sign) {
 function regexMathCut(string, regexMath) {
     while(string.match(regexMath)) {
         let match = string.match(regexMath)
+        if (match[1].match(/^\./)) {
+            match[1] = match[1].replace(/^/, 0)
+        }
         let a = Number(match[1])
         let sign = match[2]
+        if (match[3].match(/^\./)) {
+            match[3] = match[3].replace(/^/, 0)
+        }
         let b = Number(match[3])
         result = operate(a, b, sign)
         string = string.replace(regexMath, result)
@@ -247,8 +255,7 @@ function equals() {
     currEquation = currEquation.replace(/[-+/*]$/, '')
 
     // If there is an operator in the equation, work through all the operators until only a number remains.
-    while (currEquation.match(/\d[+*/-]+\d/)) {
-
+    while (currEquation.match(/[\d.][+*/-]+[\d.]/)) {
         // beDMas 
         let dmExpress = /([-\d.]+)([*/])([-\d.]+)/
         currEquation = regexMathCut(currEquation, dmExpress)
@@ -262,7 +269,11 @@ function equals() {
         alert('No')
         clear();
     } else if (currEquation.toString().length > 15) {
-        alert('That number is ridiculous! Calm down!')
+        currEquation = rounder(currEquation);
+        if (currEquation.includes('.')) {
+            currEquation = currEquation.replace(/0+$/, '')
+        }
+        document.querySelector('#displaytext').textContent = currEquation;
     } else {
         document.querySelector('#displaytext').textContent = currEquation;
     }
