@@ -57,6 +57,10 @@ table {
   src: local("POCKC___.TTF");
   src: url(POCKC___.TTF);
 }
+.font {
+  font-family: "pockcalc", "Courier New", Courier, monospace;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -84,45 +88,47 @@ body {
   height: 50px;
   text-align: end;
   box-shadow: 0.5px 1px 1px 1px #629ec0;
-}
-
-#displaytext {
   font-size: 50px;
 }
 
 #buttons {
   display: flex;
+  flex: 1 1 400px;
   justify-content: center;
-  align-items: center;
-  position: relative;
+  box-sizing: border-box;
 }
 
 #digits {
   flex: 3 3 300px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-self: center;
-  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-top: 12px;
 }
 
 #operators {
   flex: 2 2 200px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   justify-self: center;
   align-self: center;
+  padding-bottom: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
 }
 
 #notequal {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  flex: 3 3 300px;
 }
 
 button {
   background-color: #6d7aee;
-  width: 80%;
-  height: 100%;
+  flex: 1 1 25%;
   border: 1px solid #6d7aee;
-  margin: 3px;
+  margin: 6px;
   font-size: 30px;
   font-family: Courier, monospace;
   border-radius: 3px;
@@ -131,15 +137,11 @@ button {
 }
 
 .op {
-  height: 92.8px;
+  flex: 1 1 40%;
 }
 
 .letters {
   height: 40px;
-}
-
-.font {
-  font-family: "pockcalc", "Courier New", Courier, monospace;
 }
 
 #backspace {
@@ -147,13 +149,13 @@ button {
   color: #1d1d20;
 }
 
-#equals {
-  width: 96%;
+#yesequals {
+  flex: 1 1 100px;
 }
 
-.repo {
-  position: relative;
-  top: 3px;
+#equals {
+  flex: 1 1 100px;
+  width: 100%;
 }
 
 /*# sourceMappingURL=index.css.map */
