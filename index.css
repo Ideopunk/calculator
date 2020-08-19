@@ -1,0 +1,159 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: "pockcalc";
+  src: local("POCKC___.TTF");
+  src: url(POCKC___.TTF);
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+#calc {
+  background-color: #c2ffd4;
+  border: 3px solid #adffc5;
+  box-sizing: border-box;
+  border-radius: 3px;
+  width: 40%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+#display {
+  background-color: #7ec7f1;
+  border-radius: 3px;
+  margin: 15px;
+  padding-right: 10px;
+  height: 50px;
+  text-align: end;
+  box-shadow: 0.5px 1px 1px 1px #629ec0;
+}
+
+#displaytext {
+  font-size: 50px;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#digits {
+  flex: 3 3 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: center;
+  border: 1px solid red;
+}
+
+#operators {
+  flex: 2 2 200px;
+  display: inline-block;
+  justify-self: center;
+  align-self: center;
+}
+
+#notequal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+button {
+  background-color: #6d7aee;
+  width: 80%;
+  height: 100%;
+  border: 1px solid #6d7aee;
+  margin: 3px;
+  font-size: 30px;
+  font-family: Courier, monospace;
+  border-radius: 3px;
+  box-sizing: border-box;
+  box-shadow: 0.5px 1px 1px 1px #494f88;
+}
+
+.op {
+  height: 92.8px;
+}
+
+.letters {
+  height: 40px;
+}
+
+.font {
+  font-family: "pockcalc", "Courier New", Courier, monospace;
+}
+
+#backspace {
+  font-size: 50px;
+  color: #1d1d20;
+}
+
+#equals {
+  width: 96%;
+}
+
+.repo {
+  position: relative;
+  top: 3px;
+}
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,108 @@
+@use "reset";
+
+@font-face {
+	font-family: "pockcalc";
+	src: local("POCKC___.TTF");
+	src: url(POCKC___.TTF);
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+}
+
+#calc {
+	background-color: hsl(138, 100%, 88%);
+	border: 3px solid hsl(137, 100%, 84%);
+	box-sizing: border-box;
+	border-radius: 3px;
+	width: 40%;
+	height: 60%;
+	display: flex;
+	flex-direction: column;
+}
+
+#display {
+	background-color: hsl(202, 80%, 72%);
+	border-radius: 3px;
+	margin: 15px;
+	padding-right: 10px;
+	height: 50px;
+	text-align: end;
+	box-shadow: 0.5px 1px 1px 1px hsl(202, 43%, 57%);
+}
+
+#displaytext {
+	font-size: 50px;
+}
+
+#buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+#digits {
+	flex: 3 3 300px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-self: center;
+	border: 1px solid red;
+}
+
+#operators {
+	flex: 2 2 200px;
+	display: inline-block;
+	justify-self: center;
+	align-self: center;
+}
+
+#notequal {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+button {
+	background-color: hsl(234, 79%, 68%);
+	width: 80%;
+	height: 100%;
+	border: 1px solid hsl(234, 79%, 68%);
+	margin: 3px;
+	font-size: 30px;
+	font-family: Courier, monospace;
+	border-radius: 3px;
+	box-sizing: border-box;
+	box-shadow: 0.5px 1px 1px 1px hsl(234, 30%, 41%);
+}
+
+.op {
+	height: 92.8px;
+}
+
+.letters {
+	height: 40px;
+}
+
+
+
+.font {
+	font-family: "pockcalc", "Courier New", Courier, monospace;
+}
+
+#backspace {
+	font-size: 50px;
+	color: hsl(240, 5%, 12%);
+}
+
+#equals {
+	width: 96%;
+}
+
+.repo {
+	position: relative;
+	top: 3px;
+}
