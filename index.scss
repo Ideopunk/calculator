@@ -68,6 +68,7 @@ body {
 #buttons {
 	display: flex;
 	flex: 1 1 400px;
+	max-width: 100%;
 	justify-content: center;
 	box-sizing: border-box;
 }
@@ -118,5 +119,5 @@ button {
 }
 
 .repo {
-	display: inline
+	display: inline;
 }
