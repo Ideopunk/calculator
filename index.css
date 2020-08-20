@@ -166,4 +166,8 @@ button {
   grid-column-end: 3;
 }
 
+.repo {
+  display: inline;
+}
+
 /*# sourceMappingURL=index.css.map */
