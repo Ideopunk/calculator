@@ -120,6 +120,7 @@ body {
   max-width: 100%;
   justify-content: center;
   box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #digits {
@@ -132,6 +133,7 @@ body {
   row-gap: 12px;
   margin: 15px;
   margin-top: 12px;
+  box-sizing: border-box;
 }
 
 #operators {
@@ -145,6 +147,7 @@ body {
   margin-bottom: 15px;
   margin-right: 15px;
   margin-top: 12px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
@@ -160,7 +163,7 @@ body {
   }
 }
 button {
-  max-width: 19vw;
+  max-width: 18vw;
   background-color: #6d7aee;
   border: 1px solid #6d7aee;
   font-size: 30px;
