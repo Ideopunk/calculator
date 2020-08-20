@@ -137,9 +137,15 @@ button {
 
 #backspace {
 	min-width: 1ch;
-	max-width: 3ch;
+	// max-width: 3ch;
 	font-size: 50px;
 	color: hsl(240, 5%, 12%);
+}
+
+@media (max-width: 767px) {
+	#backspace {
+		font-size: 30px;
+	}
 }
 
 #equals {

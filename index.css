@@ -185,11 +185,15 @@ button {
 
 #backspace {
   min-width: 1ch;
-  max-width: 3ch;
   font-size: 50px;
   color: #1d1d20;
 }
 
+@media (max-width: 767px) {
+  #backspace {
+    font-size: 30px;
+  }
+}
 #equals {
   grid-column-start: 1;
   grid-column-end: 3;
