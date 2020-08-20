@@ -151,6 +151,10 @@ body {
 }
 
 @media (max-width: 767px) {
+  #display {
+    margin: 1%;
+  }
+
   #digits {
     column-gap: 6px;
     row-gap: 6px;
