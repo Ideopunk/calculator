@@ -124,6 +124,7 @@ body {
 
 #digits {
   flex: 3 3 300px;
+  max-width: 60vw;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
@@ -137,6 +138,7 @@ body {
 
 #operators {
   flex: 2 2 200px;
+  max-width: 40vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 5fr 5fr 2fr 4fr;
