@@ -169,6 +169,7 @@ body {
   }
 }
 button {
+  min-width: 3ch;
   max-width: 18vw;
   background-color: #6d7aee;
   border: 1px solid #6d7aee;
@@ -180,6 +181,7 @@ button {
 }
 
 #backspace {
+  min-width: 1ch;
   font-size: 50px;
   color: #1d1d20;
 }

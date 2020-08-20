@@ -121,6 +121,7 @@ body {
 }
 
 button {
+	min-width: 3ch;
 	max-width: 18vw;
 	background-color: hsl(234, 79%, 68%);
 	border: 1px solid hsl(234, 79%, 68%);
@@ -132,6 +133,7 @@ button {
 }
 
 #backspace {
+	min-width: 1ch;
 	font-size: 50px;
 	color: hsl(240, 5%, 12%);
 }
