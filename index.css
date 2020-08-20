@@ -76,6 +76,8 @@ body {
   border-radius: 3px;
   width: 40%;
   height: 60%;
+  min-width: 300px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
 }
@@ -96,7 +98,6 @@ body {
   flex: 1 1 400px;
   justify-content: center;
   box-sizing: border-box;
-  border: 1px solid blue;
 }
 
 #digits {
@@ -116,13 +117,12 @@ body {
   flex: 2 2 200px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: 12fr 12fr 6fr 10fr;
   column-gap: 12px;
   row-gap: 12px;
   padding-bottom: 12px;
   padding-right: 12px;
   padding-top: 12px;
-  border: 1px solid red;
 }
 
 button {
@@ -138,6 +138,11 @@ button {
 #backspace {
   font-size: 50px;
   color: #1d1d20;
+}
+
+#equals {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 /*# sourceMappingURL=index.css.map */
