@@ -85,9 +85,9 @@ body {
   border-radius: 3px;
   margin: 15px;
   padding-right: 10px;
-  height: 50px;
   text-align: end;
   box-shadow: 0.5px 1px 1px 1px #629ec0;
+  flex: 1 0 50px;
   font-size: 50px;
 }
 
@@ -96,39 +96,38 @@ body {
   flex: 1 1 400px;
   justify-content: center;
   box-sizing: border-box;
+  border: 1px solid blue;
 }
 
 #digits {
   flex: 3 3 300px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  column-gap: 12px;
+  row-gap: 12px;
   padding-bottom: 12px;
   padding-left: 12px;
   padding-top: 12px;
+  padding-right: 12px;
 }
 
 #operators {
   flex: 2 2 200px;
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  align-self: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  column-gap: 12px;
+  row-gap: 12px;
   padding-bottom: 12px;
   padding-right: 12px;
   padding-top: 12px;
-}
-
-#notequal {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 3 3 300px;
+  border: 1px solid red;
 }
 
 button {
   background-color: #6d7aee;
-  flex: 1 1 25%;
   border: 1px solid #6d7aee;
-  margin: 6px;
   font-size: 30px;
   font-family: Courier, monospace;
   border-radius: 3px;
@@ -136,26 +135,9 @@ button {
   box-shadow: 0.5px 1px 1px 1px #494f88;
 }
 
-.op {
-  flex: 1 1 40%;
-}
-
-.letters {
-  height: 40px;
-}
-
 #backspace {
   font-size: 50px;
   color: #1d1d20;
-}
-
-#yesequals {
-  flex: 1 1 100px;
-}
-
-#equals {
-  flex: 1 1 100px;
-  width: 100%;
 }
 
 /*# sourceMappingURL=index.css.map */
