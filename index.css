@@ -147,6 +147,18 @@ body {
   padding-top: 12px;
 }
 
+@media (max-width: 767px) {
+  #digits {
+    column-gap: 6px;
+    row-gap: 6px;
+    padding-right: 6px;
+  }
+
+  #operators {
+    column-gap: 6px;
+    row-gap: 6px;
+  }
+}
 button {
   max-width: 19vw;
   background-color: #6d7aee;
