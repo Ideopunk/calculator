@@ -159,7 +159,7 @@ body {
     column-gap: 6px;
     row-gap: 6px;
     margin: 1%;
-    margin-right: 6px;
+    margin-right: 3px;
   }
 
   #operators {
@@ -178,10 +178,14 @@ button {
   border-radius: 3px;
   box-sizing: border-box;
   box-shadow: 0.5px 1px 1px 1px #494f88;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #backspace {
   min-width: 1ch;
+  max-width: 3ch;
   font-size: 50px;
   color: #1d1d20;
 }
