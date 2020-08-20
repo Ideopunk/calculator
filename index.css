@@ -130,10 +130,8 @@ body {
   grid-auto-rows: 1fr;
   column-gap: 12px;
   row-gap: 12px;
-  padding-bottom: 12px;
-  padding-left: 12px;
+  padding: 15px;
   padding-top: 12px;
-  padding-right: 12px;
 }
 
 #operators {
@@ -144,8 +142,8 @@ body {
   grid-template-rows: 5fr 5fr 2fr 4fr;
   column-gap: 12px;
   row-gap: 12px;
-  padding-bottom: 12px;
-  padding-right: 12px;
+  padding-bottom: 15px;
+  padding-right: 15px;
   padding-top: 12px;
 }
 
